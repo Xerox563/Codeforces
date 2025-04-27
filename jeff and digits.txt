@@ -1,0 +1,44 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;
+    cin >> n;
+    vector<int> card(n);
+    for (int i = 0; i < n; i++)
+    {
+        cin >> card[i];
+    }
+    sort(card.begin(), card.end());
+    // Proceeding to the solution..
+    int sum = 0;
+
+    for (int i = 0; i < n; i++)
+    {
+        sum += card[i];
+    }
+    int find_zero = count(card.begin(), card.end(), 0);
+    int i = n - 1;
+    while (sum % 9 != 0 && i >= 0)
+    {
+        sum -= card[i];
+        card.pop_back();
+    }
+    string ans = "";
+    for (int i = 0; i < card.size(); i++)
+    {
+        if (card[i] != 0)
+        {
+            ans += to_string(card[i]);
+        }
+    }
+    ans += '0';
+    cout << ans << endl;
+    if (find_zero == 0)
+    {
+        cout << "-1" << endl;
+    }
+    // cout << ans.length() << endl;
+
+    return 0;
+}
